@@ -1,0 +1,36 @@
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-lg-3 row-cols-xxl-4 justify-content-center">
+            <div class="col mb-5" *ngFor="let product of productList | filter:searchKey:'title'">
+                <div class="card h-100 p-3">
+                    <!-- Product image-->
+                    <img height="300px" class="card-img-top" src="{{product.image}}" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{product.title}}</h5>
+                            <!-- Product price-->
+                            Rs. {{product.price}}
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center row">
+                           <div class="col-6">
+                                <button  (click)="addList(product)"  style="float:left ;" class="btn btn-outline-dark mt-auto"> <i class="fa-regular fa-heart"></i> Wish List </button>
+                                <!-- <button *ngIf="isToggle" (click)="addList(product)"  style="float:left ;" class="btn"> <i class="fa-solid fa-heart text-danger"></i> </button> -->
+          
+                           </div> 
+                           <div class="col-6">
+                                <button (click)="addtocart(product)" style="float:right ;" class="btn btn-outline-dark mt-auto">Add to Cart</button>
+                            
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
