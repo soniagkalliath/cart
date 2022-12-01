@@ -22,8 +22,20 @@ const Product = mongoose.model('Product',{
         count:Number
     }
 })
-
-//3. create a model to store all product
+//3. create a model to store all product in Wishlist
+const Wishlist = mongoose.model('Wishlist',{
+    id:Number,
+    title:String,
+    price:Number,
+    description:String,
+    category:String,
+    image:String,
+    rating:{
+        rate:Number,
+        count:Number
+    }
+})
+//3. create a model to store product
 const Cart = mongoose.model('Cart',{
     id:Number,
     title:String,
@@ -40,5 +52,6 @@ const Cart = mongoose.model('Cart',{
 //4. To use User in other files - we have to export it
 module.exports ={
     Product,
-    Cart
+    Cart,
+    Wishlist
 }

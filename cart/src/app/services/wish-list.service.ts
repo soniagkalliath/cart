@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -8,19 +9,23 @@ export class WishListService {
   wishList = new BehaviorSubject<any>([]);
 
   wishItemList:any=[]
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   addtowlist(product:any){
 
-    this.wishItemList.push(product);
-    // this.http.post("http://localhost:3000/add-to-cart",product)
-    // .subscribe((res)=>{
-    //   console.log(res);
-      
-    // })
-    this.wishList.next(this.wishItemList);
-    let wlist = this.wishList['_value'];
-    localStorage.setItem('wishList',JSON.stringify(wlist))
+    // this.wishItemList.push(product);
+    // this.wishList.next(this.wishItemList);
+    // let wlist = this.wishList['_value'];
+    // localStorage.setItem('wishList',JSON.stringify(wlist))
     
+
+    //api call to add item to wishlist
+    return this.http.post('http://localhost:3000/add-to-wlist',product)
+  }
+  getWishlist(){
+    return this.http.get('http://localhost:3000/get-wishlist')
+  }
+  removeItemWlist(id:any){
+    return this.http.delete('http://localhost:3000/remove-item-wishlist/'+id)
   }
 }

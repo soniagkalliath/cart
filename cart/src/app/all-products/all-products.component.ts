@@ -37,7 +37,14 @@ export class AllProductsComponent implements OnInit {
   addList(product:any){
     console.log(product);
     
-this.wish.addtowlist(product)  
+this.wish.addtowlist(product).subscribe(
+  (result:any)=>{
+    alert(result.message)
+},
+result=>{
+  alert(result.error.message)
+}
+)  
 
  
   }

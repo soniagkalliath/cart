@@ -14,7 +14,7 @@ const cors = require('cors')
 
  //to define origin using cors
 app.use(cors({
-  origin: 'http://localhost:4200'
+  origin: ['http://localhost:4200','http://192.168.1.8:8080','https://majestic-parfait-142a84.netlify.app']
 }))
   //to parse JSON 
   app.use(express.json())
@@ -51,4 +51,31 @@ app.post('/add-to-cart',(req,res)=>{
   })
  
  })
+
+  //api to add  product to wishlist
+app.post('/add-to-wlist',(req,res)=>{
+  dataService.addtowishlist(req.body)
+  .then(result=>{
+    res.status(result.statusCode).json(result)
+  })
  
+ })
+
+ //api to get wishlist
+app.get('/get-wishlist',(req,res)=>{
+  dataService.getWishList()
+  .then(result=>{
+    res.status(result.statusCode).json(result)
+  })
+ 
+ })
+ //removeItemWlist 
+
+ app.delete('/remove-item-wishlist/:id',(req,res)=>{
+  console.log(req.params.id);
+  dataService.removeItemWlist(req.params.id)
+  .then(result=>{
+    res.status(result.statusCode).json(result)
+  })
+ 
+ })

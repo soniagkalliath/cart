@@ -11,30 +11,14 @@ export class CartService {
   cartItemList:any=[];
   public search = new BehaviorSubject<string>("");
 
-  constructor(private http:HttpClient) {
-    
-    // if(this.wishList){
-    //   console.log(this.wishList);
-
-    //   //localStorage.setItem("wishList",JSON.stringify(this.wishList))
-    // }
-   }
+  constructor(private http:HttpClient) {}
 
   // add to cart by product component
   addtoCart(product : any){
     console.log(product);
-    
     this.cartItemList.push(product);
-    // this.http.post("http://localhost:3000/add-to-cart",product)
-    // .subscribe((res)=>{
-    //   console.log(res);
-      
-    // })
-    this.productList.next(this.cartItemList);
-     this.getTotalPrice();
-    // console.log(this.cartItemList)
-    // console.log(this.productList);
-    
+     this.productList.next(this.cartItemList);
+     this.getTotalPrice();   
   }
 
   //get product to display in cart page
@@ -51,6 +35,7 @@ export class CartService {
     })
     return grandTotal;
   }
+  
   removeCartItem(product: any){
     this.cartItemList.map((a:any, index:any)=>{
       if(product.id=== a.id){
